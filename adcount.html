@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta name="viewport" charset="utf-8" width="device-width">
+<title>Adurcup</title>
+</head>
+<body>
+
+<h1>Add Your Details</h1>
+<div class="container">
+<form>
+Bussiness Name
+<br>
+<input type="text" id="bussinessname" required>
+<br>
+<br>
+Brand Name
+<br>
+<input type="text" id="brandname" required>
+<br>
+<br>
+Owner Name
+<br>
+<input type="text" id="ownername" required>
+<br>
+<br>
+Email
+<br>
+<input type="email" id="emailid" required>
+<br>
+<br>
+Phone Number
+<br>
+<input type="text" id="phnum" required>
+<br>
+<br>
+TIN Number
+<br>
+<input type="text" id="tinnumber" required>
+<br>
+<br>
+PAN Number
+<br>
+<input type="text" id="pannumber" required>
+<br>
+<br>
+Establisment Year
+<br>
+<input type="date" id="estd" required>
+<br>
+<br>
+Number of outlets
+<br>
+<input type="number" id="noo" required>
+<br>
+<br>
+Cuisines
+<br>
+ <select>
+  <option value="Alookitikki">Aloo ki tikki</option>
+  <option value="bhatura">bhatura</option>
+  <option value="Dosa">Mercedes</option>
+  <option value="pav bhaji">Audi</option>
+</select>
+
+<br>
+<button  onclick="myFunction()">
+Submit 
+</button>
+</form>
+</div>
+
+<script>
+function myFunction() {
+
+    // Get the value of the input field with id="numb"
+    var bussinessname = document.getElementById("bussinessname").value;
+    var brandname = document.getElementById("brandname").value;
+    var ownername = document.getElementById("ownername").value;
+    var email = document.getElementById("emailid").value;
+    var phnum = document.getElementById("phnum").value;
+    var tinnumber = document.getElementById("tinnumber").value;
+    var pannumber = document.getElementById("pannumber").value;
+    var estd = document.getElementById("estd").value;
+    var noo = document.getElementById("noo").value;
+    var flag=0;
+    var error = "";
+    var atposition=email.indexOf("@");  
+    var dotposition=email.lastIndexOf(".");  
+    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email.length){  
+      error = "";
+      error = "Enter the correct email";
+      document.getElementById("emailid").className="inputError";
+    }
+    if (tinnumber.length !== 9){
+      error = "";
+      error = " Tin Number should be of 9 digits ";
+      flag=1;
+      document.getElementById("tinnumber").className="inputError";
+    }
+
+    if (phnum.length !== 10){
+      flag=1;
+      error = "";
+      error = " Phone Number should be of 10 digits ";
+      document.getElementById("phnum").className="inputError";
+    }
+   
+    var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+
+     if (pannumber.search(panPat) === -1) {
+      error = "";
+      error = " Check your pannumber ";
+      flag=1;
+      document.getElementById("pannumber").className="inputError";
+            }
+
+    if (flag==1) {
+      alert(error);
+    }        
+    else {
+      alert ("Form Submitted : Check console");
+      var obj = {
+         'bussinessname': bussinessname,
+         'brandname' : brandname,
+         'ownername'  : ownername,
+         'email'  : email,
+         'phnum'  : phnum,
+         'tinnumber' : tinnumber,
+         'pannumber' : pannumber,
+         'estd' : estd,
+         'noo'  : noo
+      }
+      console.log(obj);
+    }
+    
+}  
+</script>
+
+</body>
+</html> 
